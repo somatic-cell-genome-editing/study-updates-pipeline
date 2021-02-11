@@ -1,0 +1,7 @@
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="manager" class="edu.mcw.scge.studyUpdates.Manager">
+        <property name="version" value="SCGE STUDY UPDATES PIPELINE v.0.1.0 Feb 11th, 2021"/>
+
+    </bean>
+</beans>
