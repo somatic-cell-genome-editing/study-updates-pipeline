@@ -12,7 +12,7 @@ import java.util.*;
 
 public class Manager {
     private String version;
-   
+
     TierUpdateDao tierUpdateDao=new TierUpdateDao();
     StudyDao sdao=new StudyDao();
     UpdateUtils utils=new UpdateUtils();
