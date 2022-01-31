@@ -17,33 +17,35 @@ public class UpdateUtils {
         int studyId=update.getStudyId();
         List<ExperimentRecord> records=edao.getExperimentRecordsByStudyId(studyId);
         for(ExperimentRecord r:records){
-            updateGuideTier(r.getGuideId(), update.getTier());
+           for(Guide g: gdao.getGuidesByExpRecId(r.getExperimentRecordId())) {
+               updateGuideTier(g.getGuide_id(), update.getTier());
+           }
             updateModelTier(r.getModelId(), update.getTier());
             updateDeliverySystemTier(r.getDeliverySystemId(), update.getTier());
             updateEditorTier(r.getEditorId(), update.getTier());
 
         }
     }
-    public void updateGuideTier(int guideId, int updatedTier) throws Exception {
+    public void updateGuideTier(long guideId, int updatedTier) throws Exception {
         Guide g=gdao.getGuideById(guideId).get(0);
         if(g.getTier()<updatedTier || (g.getTier()>updatedTier && g.getTier()==2)){
             gdao.updateGuideTier(updatedTier, guideId);
         }
     }
-    public void updateModelTier(int modelId, int updatedTier) throws Exception {
+    public void updateModelTier(long modelId, int updatedTier) throws Exception {
         Model m=mdao.getModelById(modelId);
         if(m.getTier()<updatedTier || (m.getTier()>updatedTier && m.getTier()==2)){
             mdao.updateModelTier(updatedTier, modelId);
         }
     }
-    public void updateDeliverySystemTier(int dsId, int updatedTier) throws Exception {
+    public void updateDeliverySystemTier(long dsId, int updatedTier) throws Exception {
         for(Delivery d: deliveryDao.getDeliverySystemsById(dsId)){
             if(d.getTier()<updatedTier || (d.getTier()>updatedTier && d.getTier()==2)){
                 deliveryDao.updateDeliveryTier(updatedTier, dsId);
             }
         }
     }
-    public void updateEditorTier(int editorId, int updatedTIer) throws Exception {
+    public void updateEditorTier(long editorId, int updatedTIer) throws Exception {
         Editor e=editorDao.getEditorById(editorId).get(0);
         if(e.getTier()<updatedTIer || (e.getTier()>updatedTIer && e.getTier()==2)){
             editorDao.updateEditorTier(updatedTIer, editorId);
