@@ -46,9 +46,12 @@ public class UpdateUtils {
         }
     }
     public void updateEditorTier(long editorId, int updatedTIer) throws Exception {
-        Editor e=editorDao.getEditorById(editorId).get(0);
-        if(e.getTier()<updatedTIer || (e.getTier()>updatedTIer && e.getTier()==2)){
-            editorDao.updateEditorTier(updatedTIer, editorId);
+        List<Editor> editors=editorDao.getEditorById(editorId);
+        if(editors.size()>0) {
+            Editor e = editorDao.getEditorById(editorId).get(0);
+            if (e.getTier() < updatedTIer || (e.getTier() > updatedTIer && e.getTier() == 2)) {
+                editorDao.updateEditorTier(updatedTIer, editorId);
+            }
         }
     }
 
