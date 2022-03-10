@@ -57,7 +57,7 @@ distributions {
     }
 }
 task update_scgecore(type:Copy){
-    from file("../scge-core/build/libs/scge-core-1.0.jar")
+    from file("../../scge-core/build/libs/scge-core-1.0.jar")
     into file("lib/")
 
 }
