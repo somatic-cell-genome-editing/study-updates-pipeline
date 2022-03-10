@@ -41,7 +41,7 @@ public class Manager {
            for(StudyTierUpdate u:updateList) {
                if (!utils.inLastDay(u)) {
                    if(!disabled) {
-                       sdao.disableStudyAssociations(u.getStudyId());
+                       sdao.disableStudyAssociations(u.getStudyId()); // inactivate study associations
                        disabled=true;
                    }
                    utils.loadStudyUpdates(u);
@@ -50,12 +50,16 @@ public class Manager {
            if(disabled){
                sdao.updateStudyTier(updateList.get(0));
                utils.updateOtherExperimentalObjects(updateList.get(0));
-               tierUpdateDao.delete(stuydId);
+              // tierUpdateDao.delete(stuydId);
+               updateLogAndDelete(stuydId);
            }
        }
 
     }
-
+    public void updateLogAndDelete(int stuydId) throws Exception {
+        tierUpdateDao.insertTierLog(stuydId);
+        tierUpdateDao.delete(stuydId);
+    }
     public void setVersion(String version) {
         this.version = version;
     }
