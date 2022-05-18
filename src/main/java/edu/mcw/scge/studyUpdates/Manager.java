@@ -2,7 +2,7 @@ package edu.mcw.scge.studyUpdates;
 
 import edu.mcw.scge.dao.implementation.*;
 import edu.mcw.scge.datamodel.*;
-import edu.mcw.scge.studyUpdates.process.UpdateUtils;
+import edu.mcw.scge.process.tierUpdates.UpdateUtils;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.core.io.FileSystemResource;
