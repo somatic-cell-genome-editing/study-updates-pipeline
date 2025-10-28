@@ -1,20 +1,24 @@
-plugins {
-    id 'java'
+tasks.whenTaskAdded { task ->
+    ['startScripts', 'distTar'].each { String skipTaskName ->
+        if (task.name.contains(skipTaskName)) {
+            task.enabled = false
+        }
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'application'
 mainClassName="edu.mcw.scge.studyUpdates.Manager"
- myAppName="study-updates-pipeline"
+String  myAppName="study-updates-pipeline"
 
-
+project.archivesBaseName = myAppName
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testimplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
     implementation fileTree(dir: 'lib', include: '*.jar')
     implementation group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.9.0'
     implementation group: 'commons-logging', name: 'commons-logging', version: '1.2'
